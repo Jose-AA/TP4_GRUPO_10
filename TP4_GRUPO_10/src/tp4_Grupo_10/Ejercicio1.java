@@ -1,4 +1,5 @@
 package tp4_Grupo_10;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -8,6 +9,10 @@ import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.Color;
+
 
 public class Ejercicio1 extends JFrame {
 
@@ -17,6 +22,8 @@ public class Ejercicio1 extends JFrame {
 	private JTextField txtApellido;
 	private JTextField txtTelefono;
 	private JTextField txtFechaNac;
+	private JLabel lblResultado;
+	
 	public Ejercicio1() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 505, 342);
@@ -69,19 +76,90 @@ public class Ejercicio1 extends JFrame {
 		JButton btnMostrar = new JButton("Mostrar");
 		btnMostrar.setBounds(298, 201, 89, 23);
 		contentPane.add(btnMostrar);
+		btnMostrar.addActionListener(new eventoBtnMostrar(txtNombre, txtApellido, txtTelefono, txtFechaNac));
 		
 		JLabel lblDatos = new JLabel("Los datos ingresados fueron: ");
 		lblDatos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDatos.setBounds(59, 261, 172, 14);
+		lblDatos.setBounds(59, 242, 172, 14);
 		contentPane.add(lblDatos);
 		
-		JLabel lblResultado = new JLabel("Aqui van los datos");
-		lblResultado.setBounds(273, 261, 172, 14);
+		lblResultado = new JLabel();
+		lblResultado.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblResultado.setBounds(59, 268, 366, 14);
 		contentPane.add(lblResultado);
+		
 	}
 	
 	public void cambiarVisibilidad(boolean estado)
 	{
 		setVisible(true);
 	}
+	
+	class eventoBtnMostrar implements ActionListener
+	{
+		//Creo variables para recibir los txt
+		private JTextField txtNombre, txtApellido, txtTelefono, txtFechaNac;
+		
+		///Recibo los parametros mediante el constructor
+		public eventoBtnMostrar(JTextField Nombre, JTextField Apellido, JTextField Telefono, JTextField FechaNac)
+		{
+			txtNombre = Nombre;
+			txtApellido = Apellido;
+			txtTelefono = Telefono;
+			txtFechaNac = FechaNac;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+            boolean validarCampos = true;
+
+            txtNombre.setBackground(Color.WHITE);
+            txtApellido.setBackground(Color.WHITE);
+            txtTelefono.setBackground(Color.WHITE);
+            txtFechaNac.setBackground(Color.WHITE);
+
+            //Valido si los campos estan vacios
+            if (txtNombre.getText().trim().isEmpty()) { 
+                txtNombre.setBackground(Color.RED);
+                validarCampos = false;
+            }
+            if (txtApellido.getText().trim().isEmpty()) {
+                txtApellido.setBackground(Color.RED);
+                validarCampos = false;
+            }
+            if (txtTelefono.getText().trim().isEmpty()) {
+                txtTelefono.setBackground(Color.RED);
+                validarCampos = false;
+            }
+            if (txtFechaNac.getText().trim().isEmpty()) {
+                txtFechaNac.setBackground(Color.RED);
+                validarCampos = false;
+            }
+
+            if (validarCampos) {
+                String nombre = txtNombre.getText();
+                String apellido = txtApellido.getText();
+                String telefono = txtTelefono.getText();
+                String fechaNac = txtFechaNac.getText();
+
+                String resultado = nombre + " " + apellido + " | " + telefono + " | " + fechaNac;
+
+                lblResultado.setText(resultado);
+
+                ///Seteo los txt vacios
+                txtNombre.setText("");
+                txtApellido.setText("");
+                txtTelefono.setText("");
+                txtFechaNac.setText("");
+            } 
+            else 
+            {
+                lblResultado.setText("");
+            }
+
+		}	
+			
+		}
+	
 }
