@@ -23,6 +23,7 @@ public class Ejercicio1 extends JFrame {
 	private JTextField txtTelefono;
 	private JTextField txtFechaNac;
 	private JLabel lblResultado;
+	private JLabel lblAdvertenciaTelefono; 
 	
 	public Ejercicio1() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -73,6 +74,8 @@ public class Ejercicio1 extends JFrame {
 		contentPane.add(txtFechaNac);
 		txtFechaNac.setColumns(10);
 		
+		
+		
 		JButton btnMostrar = new JButton("Mostrar");
 		btnMostrar.setBounds(298, 201, 89, 23);
 		contentPane.add(btnMostrar);
@@ -87,6 +90,12 @@ public class Ejercicio1 extends JFrame {
 		lblResultado.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblResultado.setBounds(59, 268, 366, 14);
 		contentPane.add(lblResultado);
+		
+		
+		lblAdvertenciaTelefono = new JLabel("");
+		lblAdvertenciaTelefono.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblAdvertenciaTelefono.setBounds(9, 130, 89, 14);
+		contentPane.add(lblAdvertenciaTelefono);
 		
 	}
 	
@@ -132,6 +141,16 @@ public class Ejercicio1 extends JFrame {
                 txtTelefono.setBackground(Color.RED);
                 validarCampos = false;
             }
+            else if (!txtTelefono.getText().matches("\\d+")) 
+            {
+            //Valido que el textbox de telefono solo contenga numeros mediante expreison regular
+            txtTelefono.setBackground(Color.RED);
+            lblAdvertenciaTelefono.setVisible(true);
+            lblAdvertenciaTelefono.setForeground(Color.RED);
+            lblAdvertenciaTelefono.setText("Solo numeros.");
+            
+            validarCampos = false;
+            }
             if (txtFechaNac.getText().trim().isEmpty()) {
                 txtFechaNac.setBackground(Color.RED);
                 validarCampos = false;
@@ -152,6 +171,7 @@ public class Ejercicio1 extends JFrame {
                 txtApellido.setText("");
                 txtTelefono.setText("");
                 txtFechaNac.setText("");
+                lblAdvertenciaTelefono.setText("");
             } 
             else 
             {
@@ -161,5 +181,4 @@ public class Ejercicio1 extends JFrame {
 		}	
 			
 		}
-	
 }
