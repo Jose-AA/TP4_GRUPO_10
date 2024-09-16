@@ -23,7 +23,9 @@ public class Ejercicio1 extends JFrame {
 	private JTextField txtTelefono;
 	private JTextField txtFechaNac;
 	private JLabel lblResultado;
-	private JLabel lblAdvertenciaTelefono; 
+	private JLabel lblAdvertenciaTelefono;
+	private JLabel lblAdvertenciaNombre;
+	private JLabel lblAdvertenciaApellido;
 	
 	public Ejercicio1() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -97,6 +99,16 @@ public class Ejercicio1 extends JFrame {
 		lblAdvertenciaTelefono.setBounds(9, 130, 89, 14);
 		contentPane.add(lblAdvertenciaTelefono);
 		
+		lblAdvertenciaNombre = new JLabel("");
+		lblAdvertenciaNombre.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblAdvertenciaNombre.setBounds(9, 32, 89, 14);
+		contentPane.add(lblAdvertenciaNombre);
+		
+		lblAdvertenciaApellido = new JLabel("");
+		lblAdvertenciaApellido.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblAdvertenciaApellido.setBounds(9, 82, 89, 14);
+		contentPane.add(lblAdvertenciaApellido);
+		
 	}
 	
 	public void cambiarVisibilidad(boolean estado)
@@ -141,15 +153,32 @@ public class Ejercicio1 extends JFrame {
                 txtTelefono.setBackground(Color.RED);
                 validarCampos = false;
             }
+            //Valido que el textbox de telefono solo contenga numeros mediante expreison regular
             else if (!txtTelefono.getText().matches("\\d+")) 
             {
-            //Valido que el textbox de telefono solo contenga numeros mediante expreison regular
             txtTelefono.setBackground(Color.RED);
             lblAdvertenciaTelefono.setVisible(true);
             lblAdvertenciaTelefono.setForeground(Color.RED);
             lblAdvertenciaTelefono.setText("Solo numeros.");
             
             validarCampos = false;
+            }
+            //Validar solo letras en nombre y apellido
+            if(!txtNombre.getText().matches("[a-zA-Z]+"))
+            {
+            	txtNombre.setBackground(Color.RED);
+            	lblAdvertenciaNombre.setVisible(true);
+            	lblAdvertenciaNombre.setForeground(Color.RED);
+            	lblAdvertenciaNombre.setText("Solo letras.");
+            	validarCampos = false;
+            }
+            if(!txtApellido.getText().matches("[a-zA-Z]+"))
+            {
+            	txtApellido.setBackground(Color.RED);
+            	lblAdvertenciaApellido.setVisible(true);
+            	lblAdvertenciaApellido.setForeground(Color.RED);
+            	lblAdvertenciaApellido.setText("Solo letras.");
+            	validarCampos = false;
             }
             if (txtFechaNac.getText().trim().isEmpty()) {
                 txtFechaNac.setBackground(Color.RED);
