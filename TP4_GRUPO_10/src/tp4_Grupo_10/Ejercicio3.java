@@ -4,10 +4,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -16,6 +18,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Ejercicio3 extends JFrame {
 
@@ -54,10 +58,15 @@ public class Ejercicio3 extends JFrame {
 		rdbtnMac_1.setBounds(269, 13, 57, 25);
 		panel.add(rdbtnMac_1);
 		
-		JRadioButton rdbtnMac = new JRadioButton("Linux");
-		rdbtnMac.setFont(new Font("Tahoma", Font.BOLD, 12));
-		rdbtnMac.setBounds(333, 13, 61, 25);
-		panel.add(rdbtnMac);
+		JRadioButton rdbtnLinux = new JRadioButton("Linux");
+		rdbtnLinux.setFont(new Font("Tahoma", Font.BOLD, 12));
+		rdbtnLinux.setBounds(333, 13, 61, 25);
+		panel.add(rdbtnLinux);
+		
+		ButtonGroup grupo = new ButtonGroup();
+		grupo.add(rdbtnWindows);
+		grupo.add(rdbtnMac_1);
+		grupo.add(rdbtnLinux);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -96,8 +105,15 @@ public class Ejercicio3 extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("ACEPTAR");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				JOptionPane.showMessageDialog(contentPane,"Test", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnNewButton.setBounds(327, 291, 106, 25);
