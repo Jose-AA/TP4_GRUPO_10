@@ -41,6 +41,12 @@ public class VentanaContenedora extends JFrame {
 		contentPane.add(btnEjercicio2);
 		
 		JButton btnEjercicio3 = new JButton("Ejercicio 3");
+		btnEjercicio3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ejercicio3 Ventana3 = new Ejercicio3();
+				Ventana3.cambiarVisibilidad(true);
+			}
+		});
 		btnEjercicio3.setBounds(196, 192, 108, 42);
 		contentPane.add(btnEjercicio3);
 			
