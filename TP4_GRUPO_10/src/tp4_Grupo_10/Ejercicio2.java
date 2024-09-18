@@ -129,22 +129,37 @@ public class Ejercicio2 extends JFrame {
 		
 		JButton btnNewButton = new JButton("CALCULAR");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {	
-				
-				if (txtNota1.getText().trim().isEmpty() ||
-			            txtNota2.getText().trim().isEmpty() ||
-			            txtNota3.getText().trim().isEmpty()) {
-			            JOptionPane.showMessageDialog(null, "Debe ingresar las tres notas.");
-			            return; 
-			        }
-				
-				String seleccion = (String) cmbNotaTp_1.getSelectedItem();		      		 
-		        if ("Desaprobado".equals(seleccion)) {
-		            textField_1.setText("Libre");  
-		        } else {
-		            textField_1.setText("");  
-		        }									
-			}
+		    public void actionPerformed(ActionEvent e) 
+		    {
+		        if (txtNota1.getText().trim().isEmpty() || 
+		            txtNota2.getText().trim().isEmpty() || 
+		            txtNota3.getText().trim().isEmpty()) {
+		            JOptionPane.showMessageDialog(null, "Debe ingresar las tres notas.");
+		            return;
+		        }		        
+		        try 
+		        {
+		            double nota1 = Double.parseDouble(txtNota1.getText());
+		            double nota2 = Double.parseDouble(txtNota2.getText());
+		            double nota3 = Double.parseDouble(txtNota3.getText());
+		            String seleccion = (String) cmbNotaTp_1.getSelectedItem();
+		            
+		            double promedio = (nota1 + nota2 + nota3) / 3;
+		            textField.setText(String.format("%.2f", promedio));  
+
+		            if ("Desaprobado".equals(seleccion) || nota1 < 6 || nota2 < 6 || nota3 < 6) {
+		                textField_1.setText("Libre");
+		            } else if (nota1 >= 8 && nota2 >= 8 && nota3 >= 8) {
+		                textField_1.setText("Promocionado");
+		            } else {
+		                textField_1.setText("Regular");
+		            }
+		        } 
+		        catch (NumberFormatException ex)
+		        {
+		            JOptionPane.showMessageDialog(null, "Debe ingresar valores numéricos válidos.");
+		        }
+		    }
 		});
 		btnNewButton.setBounds(339, 23, 124, 48);
 		contentPane.add(btnNewButton);
@@ -204,6 +219,24 @@ public class Ejercicio2 extends JFrame {
 		gbc_textField_1.gridx = 2;
 		gbc_textField_1.gridy = 1;
 		panel_1.add(textField_1, gbc_textField_1);
+		
+		btnSalir.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        dispose();
+		    }
+		});
+		
+		
+		btnNuevo.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        txtNota1.setText("");
+		        txtNota2.setText("");
+		        txtNota3.setText("");
+		        cmbNotaTp_1.setSelectedIndex(0);
+		        textField.setText("");
+		        textField_1.setText("");
+		    }
+		});
 	}
 
 	
