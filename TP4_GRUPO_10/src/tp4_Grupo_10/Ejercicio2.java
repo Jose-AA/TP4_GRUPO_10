@@ -17,6 +17,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -128,7 +129,21 @@ public class Ejercicio2 extends JFrame {
 		
 		JButton btnNewButton = new JButton("CALCULAR");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {	
+				
+				if (txtNota1.getText().trim().isEmpty() ||
+			            txtNota2.getText().trim().isEmpty() ||
+			            txtNota3.getText().trim().isEmpty()) {
+			            JOptionPane.showMessageDialog(null, "Debe ingresar las tres notas.");
+			            return; 
+			        }
+				
+				String seleccion = (String) cmbNotaTp_1.getSelectedItem();		      		 
+		        if ("Desaprobado".equals(seleccion)) {
+		            textField_1.setText("Libre");  
+		        } else {
+		            textField_1.setText("");  
+		        }									
 			}
 		});
 		btnNewButton.setBounds(339, 23, 124, 48);
