@@ -108,6 +108,23 @@ public class Ejercicio3 extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				
+				if(!rdbtnWindows.isSelected() && !rdbtnMac_1.isSelected() && !rdbtnLinux.isSelected()) {
+					JOptionPane.showMessageDialog(contentPane,"Error", "Debe marcar al menos un S.O.", JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
+				
+				Boolean chkSelected = false;
+				
+				if(chckbxNewCheckBox.isSelected() || chckbxAdministracion.isSelected() || chckbxDiseoGrafico.isSelected()) {
+					chkSelected = true;
+				}
+				
+				if(chkSelected == false) {
+					JOptionPane.showMessageDialog(contentPane,"Error", "Debe marcar al menos una especialidad", JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
+				
 				JOptionPane.showMessageDialog(contentPane,"Test", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
