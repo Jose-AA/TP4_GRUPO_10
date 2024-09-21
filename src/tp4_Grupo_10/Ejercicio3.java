@@ -125,8 +125,23 @@ public class Ejercicio3 extends JFrame {
 					return;
 				}
 				
+				String inputText = textField.getText();
+
+			    if (inputText.isEmpty()) {
+			        JOptionPane.showMessageDialog(contentPane, "Error", "No ha indicado la cantidad de horas", JOptionPane.INFORMATION_MESSAGE);
+			        return;
+			    }
+				
+			    if (!inputText.matches("\\d+")) {
+			        JOptionPane.showMessageDialog(contentPane, "Error", "Solo se permiten números ", JOptionPane.INFORMATION_MESSAGE);
+			        return;
+			    }
+			    
 				JOptionPane.showMessageDialog(contentPane,"Test", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 			}
+			
+			
+			
 		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
