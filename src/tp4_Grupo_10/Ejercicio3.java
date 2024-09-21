@@ -137,7 +137,31 @@ public class Ejercicio3 extends JFrame {
 			        return;
 			    }
 			    
-				JOptionPane.showMessageDialog(contentPane,"Test", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+			    String soSeleccionado = "";
+		        if (rdbtnWindows.isSelected()) {
+		            soSeleccionado = "Windows";
+		        } else if (rdbtnMac_1.isSelected()) {
+		            soSeleccionado = "Mac";
+		        } else if (rdbtnLinux.isSelected()) {
+		            soSeleccionado = "Linux";
+		        }
+
+		        String especialidadesSeleccionadas = "";
+		        if (chckbxNewCheckBox.isSelected()) {
+		            especialidadesSeleccionadas += "Programación ";
+		        }
+		        if (chckbxAdministracion.isSelected()) {
+		            especialidadesSeleccionadas += "Administración ";
+		        }
+		        if (chckbxDiseoGrafico.isSelected()) {
+		            especialidadesSeleccionadas += "Diseño Gráfico ";
+		        }
+
+		        String mensajeFinal = "S.O. seleccionado: " + soSeleccionado + 
+		                              "\nEspecialidades seleccionadas: " + especialidadesSeleccionadas.toString() + 
+		                              "\nHoras indicadas: " + inputText;
+		        
+		        JOptionPane.showMessageDialog(contentPane, mensajeFinal, "Resumen", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 			
