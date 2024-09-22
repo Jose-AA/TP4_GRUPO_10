@@ -1,7 +1,5 @@
 package tp4_Grupo_10;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 //import net.miginfocom.swing.MigLayout;
 //import com.jgoodies.forms.layout.FormLayout;
@@ -12,9 +10,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,14 +24,14 @@ import java.awt.event.ActionEvent;
 
 public class Ejercicio2 extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtNota1;
 	private JTextField txtNota2;
 	private JTextField txtNota3;
 	private JLabel lblNotaTps;
-	private JComboBox cmbNotaTp;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtPromedio;
+	private JTextField txtCondicion;
 
 	public Ejercicio2() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -46,8 +41,6 @@ public class Ejercicio2 extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		cmbNotaTp = new JComboBox();
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Notas del estudiante", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -118,14 +111,14 @@ public class Ejercicio2 extends JFrame {
 		gbc_lblNotaTps.gridx = 1;
 		gbc_lblNotaTps.gridy = 3;
 		panel.add(lblNotaTps, gbc_lblNotaTps);
-		JComboBox<String> cmbNotaTp_1 = new JComboBox<>();
-		GridBagConstraints gbc_cmbNotaTp_1 = new GridBagConstraints();
-		gbc_cmbNotaTp_1.anchor = GridBagConstraints.WEST;
-		gbc_cmbNotaTp_1.gridx = 2;
-		gbc_cmbNotaTp_1.gridy = 3;
-		panel.add(cmbNotaTp_1, gbc_cmbNotaTp_1);
-		cmbNotaTp_1.addItem("Aprobado");
-		cmbNotaTp_1.addItem("Desaprobado");
+		JComboBox<String> cmbNotaTp = new JComboBox<>();
+		GridBagConstraints gbc_cmbNotaTp = new GridBagConstraints();
+		gbc_cmbNotaTp.anchor = GridBagConstraints.WEST;
+		gbc_cmbNotaTp.gridx = 2;
+		gbc_cmbNotaTp.gridy = 3;
+		panel.add(cmbNotaTp, gbc_cmbNotaTp);
+		cmbNotaTp.addItem("Aprobado");
+		cmbNotaTp.addItem("Desaprobado");
 		
 		JButton btnNewButton = new JButton("CALCULAR");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -142,17 +135,17 @@ public class Ejercicio2 extends JFrame {
 		            double nota1 = Double.parseDouble(txtNota1.getText());
 		            double nota2 = Double.parseDouble(txtNota2.getText());
 		            double nota3 = Double.parseDouble(txtNota3.getText());
-		            String seleccion = (String) cmbNotaTp_1.getSelectedItem();
+		            String seleccion = (String) cmbNotaTp.getSelectedItem();
 		            
 		            double promedio = (nota1 + nota2 + nota3) / 3;
-		            textField.setText(String.format("%.2f", promedio));  
+		            txtPromedio.setText(String.format("%.2f", promedio));  
 
 		            if ("Desaprobado".equals(seleccion) || nota1 < 6 || nota2 < 6 || nota3 < 6) {
-		                textField_1.setText("Libre");
+		                txtCondicion.setText("Libre");
 		            } else if (nota1 >= 8 && nota2 >= 8 && nota3 >= 8) {
-		                textField_1.setText("Promocionado");
+		                txtCondicion.setText("Promocionado");
 		            } else {
-		                textField_1.setText("Regular");
+		                txtCondicion.setText("Regular");
 		            }
 		        } 
 		        catch (NumberFormatException ex)
@@ -195,14 +188,14 @@ public class Ejercicio2 extends JFrame {
 		gbc_lblPromedio.gridy = 0;
 		panel_1.add(lblPromedio, gbc_lblPromedio);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.anchor = GridBagConstraints.WEST;
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 0;
-		panel_1.add(textField, gbc_textField);
+		txtPromedio = new JTextField();
+		txtPromedio.setColumns(10);
+		GridBagConstraints gbc_txtPromedio = new GridBagConstraints();
+		gbc_txtPromedio.anchor = GridBagConstraints.WEST;
+		gbc_txtPromedio.insets = new Insets(0, 0, 5, 0);
+		gbc_txtPromedio.gridx = 2;
+		gbc_txtPromedio.gridy = 0;
+		panel_1.add(txtPromedio, gbc_txtPromedio);
 		
 		JLabel lblCondicion = new JLabel("Condicion");
 		GridBagConstraints gbc_lblCondicion = new GridBagConstraints();
@@ -212,13 +205,13 @@ public class Ejercicio2 extends JFrame {
 		gbc_lblCondicion.gridy = 1;
 		panel_1.add(lblCondicion, gbc_lblCondicion);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.anchor = GridBagConstraints.WEST;
-		gbc_textField_1.gridx = 2;
-		gbc_textField_1.gridy = 1;
-		panel_1.add(textField_1, gbc_textField_1);
+		txtCondicion = new JTextField();
+		txtCondicion.setColumns(10);
+		GridBagConstraints gbc_txtCondicion = new GridBagConstraints();
+		gbc_txtCondicion.anchor = GridBagConstraints.WEST;
+		gbc_txtCondicion.gridx = 2;
+		gbc_txtCondicion.gridy = 1;
+		panel_1.add(txtCondicion, gbc_txtCondicion);
 		
 		btnSalir.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -232,9 +225,9 @@ public class Ejercicio2 extends JFrame {
 		        txtNota1.setText("");
 		        txtNota2.setText("");
 		        txtNota3.setText("");
-		        cmbNotaTp_1.setSelectedIndex(0);
-		        textField.setText("");
-		        textField_1.setText("");
+		        cmbNotaTp.setSelectedIndex(0);
+		        txtPromedio.setText("");
+		        txtCondicion.setText("");
 		    }
 		});
 	}
